@@ -43,15 +43,19 @@ export default {
             let self = this;
             this.fetching = true;
             try {
-                $.post("http://localhost:3000/db", this.results)
-                    .done(() => {
-                        self.data = 'Success POSTing.';
-                    }).fail((xhr, status, error) => {
-                        console.log("failed to post", xhr, status, error);
-                        self.results = { xhr, status, error };
-                    }).always(() => {
-                        self.fetching = false;
-                    });
+                $.post({
+                    url: "http://localhost:3000/db",
+                    data: JSON.stringify(this.results),
+                    dataType: 'json',
+                    contentType: 'application/json'
+                }).done(() => {
+                    self.data = 'Success POSTing.';
+                }).fail((xhr, status, error) => {
+                    console.log("failed to post", xhr, status, error);
+                    self.results = { xhr, status, error };
+                }).always(() => {
+                    self.fetching = false;
+                });
             }
             catch (error) {
                 console.log("Error in $.post", error);
