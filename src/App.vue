@@ -1,5 +1,7 @@
 <template>
     <div>
+        <p>Instructions: have
+            <a href="https://github.com/typicode/json-server">json-server running on localhost</a>. Fetch JSON from there, which will be used as the body to POST with.</p>
         <p>GET JSON:
             <button @click="getJson" :disabled="fetching">Get JSON</button>
         </p>
